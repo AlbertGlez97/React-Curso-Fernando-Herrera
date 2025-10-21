@@ -3,7 +3,13 @@
     "allow": [
       "mcp__ide__getDiagnostics",
       "Bash(cat:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(npm run test)",
+      "Bash(npm run test:ui:*)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(node --dns-result-order=ipv4first node_modules/vitest/vitest.mjs:*)",
+      "Bash(move APUNTES.md notasAPUNTES.md)"
     ],
     "deny": [],
     "ask": []
