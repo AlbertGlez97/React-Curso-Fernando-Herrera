@@ -1,0 +1,14 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`MyAwesomeApp > should match snapshot 1`] = `
+<div>
+  <h1
+    style="background-color: rgb(250, 250, 250); border-radius: 10px; padding: 10px;"
+  >
+    Hola 
+    John
+     
+    Doe
+  </h1>
+</div>
+`;
