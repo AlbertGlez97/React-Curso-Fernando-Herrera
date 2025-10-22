@@ -1,0 +1,25 @@
+import type { FC } from "react";
+import type { Gif } from "../interfaces/gif.interface";
+
+interface GifListProps {
+  gifs: Gif[];
+}
+
+/**
+ * Renderiza una lista de GIFs en formato de tarjetas
+ */
+export const GifList: FC<GifListProps> = ({ gifs }) => {
+  return (
+    <div className="gifs-container">
+      {gifs.map((gif) => (
+        <div key={gif.id} className="gif-card">
+          <img src={gif.url} alt={gif.title} />
+          <h3>{gif.title}</h3>
+          <p>
+            {gif.width} x {gif.height}
+          </p>
+        </div>
+      ))}
+    </div>
+  );
+};
