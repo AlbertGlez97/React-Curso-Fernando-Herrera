@@ -19,7 +19,7 @@ const [valor, setValor] = useState(valorInicial);
 ### Estado con array de strings
 
 ```tsx
-const [previusTerms, setPreviousTerms] = useState<string[]>([]);
+const [previousTerms, setPreviousTerms] = useState<string[]>([]);
 ```
 
 - Inicia con un array vacío `[]`
@@ -51,26 +51,28 @@ const [query, setQuery] = useState("");
 
 ```tsx
 setGifs(gifs); // Reemplaza completamente el estado
-setQuery("");  // Limpia el input
+setQuery(""); // Limpia el input
 ```
 
 ### Actualización basada en el estado anterior
 
 ```tsx
-setPreviousTerms([querySearch, ...previusTerms].splice(0, 8));
+setPreviousTerms([querySearch, ...previousTerms].splice(0, 8));
 ```
 
 - Crea un nuevo array con el nuevo término al inicio
-- `...previusTerms` expande el array anterior
+- `...previousTerms` expande el array anterior
 - `.splice(0, 8)` mantiene solo los primeros 8 elementos
 
 ## Reglas importantes
 
 1. **Inmutabilidad**: Nunca modifiques el estado directamente, siempre usa la función set
-   - ❌ `previusTerms.push("nuevo")`
-   - ✅ `setPreviousTerms([...previusTerms, "nuevo"])`
+
+   - ❌ `previousTerms.push("nuevo")`
+   - ✅ `setPreviousTerms([...previousTerms, "nuevo"])`
 
 2. **El estado es asíncrono**: El cambio no ocurre inmediatamente
+
    ```tsx
    setQuery("nuevo");
    console.log(query); // Aún tiene el valor anterior
@@ -80,5 +82,5 @@ setPreviousTerms([querySearch, ...previusTerms].splice(0, 8));
 
 4. **TypeScript**: Define el tipo del estado para evitar errores
    ```tsx
-   useState<Tipo>(valorInicial)
+   useState<Tipo>(valorInicial);
    ```

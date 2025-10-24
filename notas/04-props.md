@@ -20,7 +20,7 @@ Componente Padre → props → Componente Hijo
 // Definición de la interfaz
 interface CustomHeaderProps {
   title: string;
-  description?: string;  // ?: significa opcional
+  description?: string; // ?: significa opcional
 }
 
 // Componente hijo que recibe props
@@ -37,7 +37,7 @@ export const CustomHeader: FC<CustomHeaderProps> = ({ title, description }) => {
 <CustomHeader
   title="Buscador de Gifs"
   description="Descubre y comparte el Gif perfecto"
-/>
+/>;
 ```
 
 ### 2. Props de arrays
@@ -51,9 +51,9 @@ interface PreviousSearchesProps {
 
 // Uso
 <PreviousSearches
-  searches={previusTerms}
+  searches={previousTerms}
   onlabelClicked={handleTermClicked}
-/>
+/>;
 ```
 
 ### 3. Props de funciones (callbacks)
@@ -62,7 +62,7 @@ interface PreviousSearchesProps {
 // Interfaz
 interface SearchBarProps {
   placeholder: string;
-  onQuery: (query: string) => void;  // Función que recibe string
+  onQuery: (query: string) => void; // Función que recibe string
 }
 
 // Componente padre define la función
@@ -71,10 +71,7 @@ const handleSearch = async (query: string) => {
 };
 
 // Pasa la función como prop
-<SearchBar
-  placeholder="Buscar gifs..."
-  onQuery={handleSearch}
-/>
+<SearchBar placeholder="Buscar gifs..." onQuery={handleSearch} />;
 
 // Componente hijo la usa
 export const SearchBar: FC<SearchBarProps> = ({ placeholder, onQuery }) => {
@@ -88,18 +85,18 @@ export const SearchBar: FC<SearchBarProps> = ({ placeholder, onQuery }) => {
 
 ```tsx
 interface GifListProps {
-  gifs: Gif[];  // Array de objetos
+  gifs: Gif[]; // Array de objetos
 }
 
 // Uso
-<GifList gifs={gifs} />
+<GifList gifs={gifs} />;
 ```
 
 ## Props opcionales vs requeridas
 
 ```tsx
 interface Props {
-  title: string;        // Requerida
+  title: string; // Requerida
   description?: string; // Opcional (?)
 }
 ```
@@ -107,12 +104,15 @@ interface Props {
 Si una prop es opcional, debes manejar el caso cuando no existe:
 
 ```tsx
-{description && <p>{description}</p>}
+{
+  description && <p>{description}</p>;
+}
 ```
 
 ## Desestructuración de props
 
 ### Opción 1: En los parámetros
+
 ```tsx
 export const Header = ({ title, description }: HeaderProps) => {
   return <h1>{title}</h1>;
@@ -120,6 +120,7 @@ export const Header = ({ title, description }: HeaderProps) => {
 ```
 
 ### Opción 2: En el cuerpo
+
 ```tsx
 export const Header = (props: HeaderProps) => {
   const { title, description } = props;
@@ -132,11 +133,13 @@ La opción 1 es más común y concisa.
 ## Pasando funciones como props
 
 ### Forma simple (función ya definida)
+
 ```tsx
 <PreviousSearches onlabelClicked={handleTermClicked} />
 ```
 
 ### Forma con arrow function inline
+
 ```tsx
 <PreviousSearches onlabelClicked={(term: string) => handleTermClicked(term)} />
 ```
@@ -159,7 +162,7 @@ export const Container = ({ children }: Props) => {
 // Uso
 <Container>
   <h1>Contenido aquí</h1>
-</Container>
+</Container>;
 ```
 
 ## Reglas importantes
