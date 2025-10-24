@@ -84,3 +84,81 @@ setPreviousTerms([querySearch, ...previousTerms].splice(0, 8));
    ```tsx
    useState<Tipo>(valorInicial);
    ```
+
+## Otros Hooks de React
+
+`useState` es solo uno de los muchos hooks que React ofrece. Aquí está la lista completa:
+
+### Hooks Básicos
+
+Estos hooks los encontrarás en toda aplicación de React:
+
+| Hook | Descripción |
+|------|-------------|
+| **useState** | Maneja un estado local en el componente |
+| **useEffect** | Ejecuta efectos secundarios y limpieza al desmontar el componente |
+| **useContext** | Accede al valor alojado en el contexto (árbol de componentes) |
+
+### Hooks Adicionales
+
+Hooks que ofrecen comportamientos adicionales:
+
+| Hook | Descripción |
+|------|-------------|
+| **useReducer** | Alternativa al useState para lógica compleja (similar a Redux) |
+| **useRef** | Referencias mutables que no causan re-render |
+| **useMemo** | Memoriza valores para evitar volverlos a calcular entre re-renders |
+| **useCallback** | Memoriza funciones para evitar recreaciones innecesarias |
+| **useLayoutEffect** | Similar al useEffect, pero sincronizado justo después del render |
+| **useImperativeHandle** | Expone métodos desde un componente con forwardRef |
+
+### Hooks Relacionados al DOM
+
+Hooks orientados a información del DOM:
+
+| Hook | Descripción |
+|------|-------------|
+| **useDeferredValue** | Difiere valores para mejorar el rendimiento entre re-renders |
+| **useTransition** | Permite renderizar partes del UI en el background (actualizaciones no urgentes) |
+| **useInsertionEffect** | Se ejecuta antes del render para estilos dinámicos |
+
+### Hooks Modernos (React 18+)
+
+Los últimos hooks añadidos a React:
+
+| Hook | Descripción |
+|------|-------------|
+| **useFormStatus** | Lee el estado de un `<form>`, el último posteo |
+| **useActionState** | Actualiza el estado basado en el resultado de un posteo de formulario |
+| **useOptimistic** | Muestra valores optimistas antes de que una acción sea resuelta |
+
+### Ejemplo de comparación: useState vs useReducer
+
+```tsx
+// Con useState (simple)
+const [count, setCount] = useState(0);
+setCount(count + 1);
+
+// Con useReducer (lógica compleja)
+const [state, dispatch] = useReducer(reducer, { count: 0 });
+dispatch({ type: 'INCREMENT' });
+```
+
+### useRef - Referencias sin re-renders
+
+Ya usamos `useRef` en nuestro proyecto para el cache:
+
+```tsx
+const gifsCache = useRef<Record<string, Gif[]>>({});
+
+// Modificar NO causa re-render
+gifsCache.current['cats'] = [...]; // Sin re-render
+```
+
+**Diferencia clave:**
+- `useState` → Cambios causan re-render
+- `useRef` → Cambios NO causan re-render
+
+---
+
+**Pro Tip:** Aprende los hooks básicos primero (useState, useEffect, useContext) antes de explorar los avanzados.

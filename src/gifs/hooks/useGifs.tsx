@@ -45,11 +45,11 @@ export const useGifs = () => {
   };
 
   return {
-    //Properties
+    //Propiedades
     previousTerms,
     gifs,
 
-    //Methods / Actions
+    //Metodos / Acciones
     handleTermClicked,
     handleSearch,
   };

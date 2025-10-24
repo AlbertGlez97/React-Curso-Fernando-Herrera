@@ -6,11 +6,11 @@ import { SearchBar } from "./shared/components/SearchBar";
 
 export const GifsApp = () => {
   const {
-    //Properties
+    //Propiedades
     previousTerms,
     gifs,
 
-    //Methods / Actions
+    //Metodos / Acciones
     handleTermClicked,
     handleSearch,
   } = useGifs();

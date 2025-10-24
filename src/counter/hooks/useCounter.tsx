@@ -16,10 +16,10 @@ export const useCounter = (initialValue: number = 10) => {
   };
 
   return {
-    //Properties
+    //Propiedades
     counter,
 
-    //Methods / Actions
+    //Metodos / Acciones
     handleAdd,
     handleSubtract,
     handleReset,

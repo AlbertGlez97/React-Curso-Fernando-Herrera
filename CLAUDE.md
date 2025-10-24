@@ -12,6 +12,9 @@ This is a GIF search application built with React 19, TypeScript, and Vite. It u
 - `npm run build` - Build for production (runs TypeScript compiler + Vite build)
 - `npm run lint` - Run ESLint on all files
 - `npm run preview` - Preview production build locally
+- `npm run test` - Run Vitest tests in watch mode
+- `npm run test:ui` - Run tests with Vitest UI
+- `npm run coverage` - Generate test coverage report
 
 ## Architecture
 
@@ -25,6 +28,7 @@ src/
 │   ├── actions/       # Data fetching logic (getGifsByQuery)
 │   ├── api/           # Axios instance with Giphy API configuration
 │   ├── components/    # GIF-related components (GifList, PreviousSearches)
+│   ├── hooks/         # Custom hooks (useGifs)
 │   └── interfaces/    # TypeScript interfaces (Gif, GiphyResponse)
 ├── shared/            # Shared/reusable components
 │   └── components/    # Common UI components (SearchBar, CustomHeader)
@@ -40,10 +44,16 @@ src/
 - Transform API responses into simplified application interfaces
 - Return typed data using domain-specific interfaces
 
-**Data Flow**: The main `GifsApp.tsx` component manages state for both GIFs and search history. Search queries flow through:
+**Custom Hooks Pattern**: Business logic is encapsulated in custom hooks (e.g., `useGifs`). The `useGifs` hook manages:
+- GIF state and search history state
+- Search handler with validation and deduplication
+- Cache implementation using `useRef` to store previously fetched GIFs
+- Previous search term click handler that uses cached data when available
+
+**Data Flow**: Search queries flow through:
 1. SearchBar (with 1-second debounce)
-2. GifsApp handler (validation & deduplication)
-3. getGifsByQuery action
+2. useGifs hook (validation, deduplication, cache check)
+3. getGifsByQuery action (if not cached)
 4. State update & re-render
 
 **Search Features**:
@@ -51,6 +61,7 @@ src/
 - Search history limited to 8 most recent unique terms
 - Case-insensitive, trimmed query handling
 - Duplicate search prevention
+- In-memory caching of search results using `useRef` (persists across re-renders)
 
 ### Environment Variables
 
@@ -63,8 +74,10 @@ The project uses TypeScript 5.9 with a composite project structure:
 - `tsconfig.app.json` - Application-specific settings
 - `tsconfig.node.json` - Node/build tool settings
 
-### Build Tools
+### Build and Testing Tools
 
 - **Vite 7** with SWC plugin for fast builds and HMR
+- **Vitest** with jsdom for unit testing and coverage reporting
+- **React Testing Library** for component testing
 - **ESLint 9** with TypeScript, React Hooks, and React Refresh plugins
 - React 19 with StrictMode enabled

@@ -39,6 +39,7 @@ Esta carpeta contiene notas detalladas sobre los conceptos clave de React implem
    - Sintaxis y uso básico
    - Actualización de estado (inmutabilidad)
    - Estado con arrays y objetos
+   - Tabla completa de todos los hooks de React
 
 6. **[useEffect](./notas/03-hooks-useEffect.md)**
    - Efectos secundarios en React
@@ -46,15 +47,23 @@ Esta carpeta contiene notas detalladas sobre los conceptos clave de React implem
    - Función de limpieza (cleanup)
    - Patrón Debounce implementado
 
+7. **[useRef](./notas/14-useRef.md)**
+   - Referencias mutables sin re-renders
+   - useRef vs useState
+   - Cache de datos (implementado en el proyecto)
+   - Referencias a elementos DOM
+   - Timers e intervals
+   - Cuándo usar useRef
+
 ### Manejo de Formularios
 
-7. **[Eventos](./notas/05-eventos.md)**
+8. **[Eventos](./notas/05-eventos.md)**
    - onClick, onChange, onKeyDown
    - Event handlers
    - Tipado de eventos en TypeScript
    - Prevención de comportamiento por defecto
 
-8. **[Inputs Controlados](./notas/11-inputs-controlados.md)**
+9. **[Inputs Controlados](./notas/11-inputs-controlados.md)**
    - ¿Qué es un input controlado?
    - Flujo de datos bidireccional
    - Validación en tiempo real
@@ -62,13 +71,13 @@ Esta carpeta contiene notas detalladas sobre los conceptos clave de React implem
 
 ### Peticiones HTTP y Asincronía
 
-9. **[Async/Await](./notas/08-async-await.md)**
-   - Programación asíncrona en JavaScript
-   - Sintaxis async/await
-   - Manejo de errores con try/catch
-   - Async/await en useEffect
+10. **[Async/Await](./notas/08-async-await.md)**
+    - Programación asíncrona en JavaScript
+    - Sintaxis async/await
+    - Manejo de errores con try/catch
+    - Async/await en useEffect
 
-10. **[Axios y HTTP](./notas/09-axios-http.md)**
+11. **[Axios y HTTP](./notas/09-axios-http.md)**
     - Configuración de Axios
     - Instancias de API
     - Variables de entorno
@@ -76,20 +85,38 @@ Esta carpeta contiene notas detalladas sobre los conceptos clave de React implem
 
 ### TypeScript
 
-11. **[TypeScript e Interfaces](./notas/10-typescript-interfaces.md)**
+12. **[TypeScript e Interfaces](./notas/10-typescript-interfaces.md)**
     - Interfaces para props
     - Tipos primitivos y complejos
     - Genéricos en React
     - Tipos para eventos
     - Type vs Interface
 
+### Custom Hooks y Patrones Avanzados
+
+13. **[Custom Hooks](./notas/13-custom-hook.md)**
+    - ¿Qué son los Custom Hooks?
+    - Extracción y reutilización de lógica
+    - Anatomía de un Custom Hook (useGifs)
+    - useRef para caching
+    - Reglas de los Hooks
+    - Separación de responsabilidades
+    - Testing y patrones comunes
+
 ### Arquitectura
 
-12. **[Organización de Archivos](./notas/12-organizacion-de-archivos.md)**
+14. **[Organización de Archivos](./notas/12-organizacion-de-archivos.md)**
     - Estructura feature-based
     - Patrón de capas (API, Actions, Components)
     - Nomenclatura de archivos
     - Mejores prácticas
+
+### Referencia
+
+15. **[Glosario de React](./notas/15-glosario.md)**
+    - Términos fundamentales de React
+    - Conceptos clave explicados
+    - Referencia rápida para desarrollo
 
 ---
 
