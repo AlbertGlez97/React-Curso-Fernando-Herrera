@@ -118,6 +118,61 @@ Esta carpeta contiene notas detalladas sobre los conceptos clave de React implem
     - Conceptos clave explicados
     - Referencia rápida para desarrollo
 
+## 🧪 Testing
+
+Esta sección contiene notas completas sobre testing con Vitest y React Testing Library.
+
+1. **[Instalación y Configuración](./notas-testing/01-instalacion-configuracion.md)**
+   - ¿Por qué Vitest?
+   - Instalación de dependencias
+   - Configuración de vite.config.ts
+   - Scripts de testing
+   - Troubleshooting
+
+2. **[Introducción a Vitest](./notas-testing/02-introduccion-vitest.md)**
+   - API básica (describe, test, expect)
+   - Matchers completos
+   - Lifecycle hooks
+   - Tests asíncronos
+   - Mocks
+   - Watch mode y UI
+   - Buenas prácticas
+
+3. **[Screen vs Container](./notas-testing/03-screen-vs-container.md)**
+   - ¿Qué es screen?
+   - ¿Cuándo usar container?
+   - Queries disponibles
+   - Prioridad de queries
+   - Comparación directa
+   - Refactorización de tests
+   - **Tema clave para el proyecto**
+
+4. **[Ejemplos del Proyecto](./notas-testing/04-ejemplos-proyecto.md)**
+   - Análisis de GifsApp.test.tsx
+   - Análisis de CustomHeader.test.tsx
+   - Comparación antes/después
+   - Mejoras sugeridas
+   - Patrones identificados
+   - **Tests reales explicados**
+
+5. **[Buenas Prácticas](./notas-testing/05-buenas-practicas.md)**
+   - Principios fundamentales
+   - Naming conventions
+   - Arrange-Act-Assert (AAA)
+   - Testing de interacciones
+   - Testing asíncrono
+   - Custom hooks
+   - Checklist completo
+
+6. **[Matchers de jest-dom](./notas-testing/06-matchers-jest-dom.md)**
+   - ¿Qué es jest-dom?
+   - Todos los matchers explicados
+   - Matchers de presencia, visibilidad, contenido
+   - Matchers de formularios y estado
+   - Matchers de accesibilidad
+   - Comparaciones con/sin jest-dom
+   - **Referencia completa de matchers**
+
 ---
 
 ## 🚀 Comandos Disponibles
