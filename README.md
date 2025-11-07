@@ -173,6 +173,27 @@ Esta sección contiene notas completas sobre testing con Vitest y React Testing 
    - Comparaciones con/sin jest-dom
    - **Referencia completa de matchers**
 
+7. **[act() - Actualizaciones de Estado](./notas-testing/07-act.md)**
+   - ¿Qué es act() y por qué existe?
+   - Cuándo SÍ y cuándo NO usar act()
+   - act() sincrónico vs asíncrono
+   - Ejemplos con hooks, componentes y eventos
+   - Errores comunes y soluciones
+   - Comparación con userEvent y fireEvent
+   - **Referencia completa de act()**
+
+8. **[Testing de Custom Hooks](./notas-testing/08-testing-custom-hooks.md)**
+   - Por qué necesitamos renderHook()
+   - Anatomía de un test de Custom Hook
+   - Patrón AAA (Arrange-Act-Assert)
+   - Testing con props dinámicas (rerender)
+   - Testing de efectos y cleanup (unmount)
+   - Testing de hooks asíncronos
+   - Testing con Context (wrapper)
+   - Ejemplo completo: useGifs
+   - Checklist y errores comunes
+   - **Guía completa para testear custom hooks**
+
 ---
 
 ## 🚀 Comandos Disponibles

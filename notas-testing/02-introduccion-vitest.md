@@ -141,6 +141,122 @@ expect(obj).toHaveProperty('name', 'John'); // Propiedad con valor
 expect(obj).toMatchObject({ name: 'John' }); // Contiene propiedades
 ```
 
+### Cuándo usar toBe vs toStrictEqual
+
+La diferencia principal está en cómo comparan valores:
+
+**toBe()** - Usa igualdad estricta (===)
+- Para valores primitivos: strings, numbers, booleans
+- Compara referencias de objetos/arrays (no su contenido)
+
+```tsx
+// ✅ Valores primitivos
+expect(5).toBe(5);
+expect("hello").toBe("hello");
+expect(true).toBe(true);
+
+// ❌ Objetos y arrays (compara referencias)
+expect({ name: "John" }).toBe({ name: "John" }); // Falla
+expect([1, 2, 3]).toBe([1, 2, 3]); // Falla
+```
+
+**toStrictEqual()** - Compara contenido profundo
+- Para objetos y arrays (compara su estructura y valores)
+- Verifica tipos exactos (más estricto que toEqual)
+- No permite propiedades undefined
+
+```tsx
+// ✅ Objetos y arrays
+expect({ name: "John", age: 30 }).toStrictEqual({ name: "John", age: 30 });
+expect([1, 2, 3]).toStrictEqual([1, 2, 3]);
+
+// Verifica estructura completa
+expect({
+  id: "123",
+  title: "Test",
+  metadata: { views: 100 }
+}).toStrictEqual({
+  id: "123",
+  title: "Test",
+  metadata: { views: 100 }
+});
+```
+
+**Regla práctica:**
+- Primitivos → `toBe()`
+- Objetos/Arrays → `toStrictEqual()`
+
+### expect.any() - Validar tipos sin valores exactos
+
+`expect.any()` permite verificar el tipo de un valor sin conocer su contenido exacto.
+
+**Tipos disponibles:**
+```tsx
+expect.any(String)   // Cualquier string
+expect.any(Number)   // Cualquier número
+expect.any(Boolean)  // Cualquier booleano
+expect.any(Array)    // Cualquier array
+expect.any(Object)   // Cualquier objeto
+expect.any(Function) // Cualquier función
+expect.any(Date)     // Cualquier fecha
+```
+
+**Uso común - Validar estructura de objetos:**
+```tsx
+const user = {
+  id: "abc-123",
+  name: "John Doe",
+  age: 30,
+  createdAt: new Date()
+};
+
+// Verificar tipos sin saber valores exactos
+expect(user).toStrictEqual({
+  id: expect.any(String),      // Cualquier string como id
+  name: expect.any(String),    // Cualquier nombre
+  age: expect.any(Number),     // Cualquier edad
+  createdAt: expect.any(Date)  // Cualquier fecha
+});
+```
+
+**Ejemplo real - Respuesta de API:**
+```tsx
+test("debe retornar gifs con estructura correcta", async () => {
+  const gifs = await getGifsByQuery("goku");
+  const [firstGif] = gifs;
+
+  // No conocemos los valores exactos, pero sabemos los tipos
+  expect(firstGif).toStrictEqual({
+    id: expect.any(String),      // ID generado por Giphy
+    title: expect.any(String),   // Título variable
+    url: expect.any(String),     // URL variable
+    width: expect.any(Number),   // Dimensiones variables
+    height: expect.any(Number)
+  });
+});
+```
+
+**Ventajas:**
+- Testear datos dinámicos (IDs, timestamps, URLs)
+- Verificar estructura sin hardcodear valores
+- Tests más flexibles y mantenibles
+
+**Combinando validaciones:**
+```tsx
+// Validar tipo Y valor específico
+expect(user).toStrictEqual({
+  id: expect.any(String),
+  name: "John",              // Valor exacto
+  age: expect.any(Number),
+  active: true               // Valor exacto
+});
+
+// Validar arrays con elementos de tipo específico
+expect(numbers).toEqual(
+  expect.arrayContaining([expect.any(Number)])
+);
+```
+
 ## Lifecycle Hooks
 
 Los hooks permiten ejecutar código antes/después de los tests.

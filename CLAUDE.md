@@ -15,6 +15,7 @@ This is a GIF search application built with React 19, TypeScript, and Vite. It u
 - `npm run test` - Run Vitest tests in watch mode
 - `npm run test:ui` - Run tests with Vitest UI
 - `npm run coverage` - Generate test coverage report
+- `npm run test -- <file-path>` - Run a single test file (e.g., `npm run test -- src/gifs/hooks/useGifs.test.tsx`)
 
 ## Architecture
 
@@ -77,7 +78,34 @@ The project uses TypeScript 5.9 with a composite project structure:
 ### Build and Testing Tools
 
 - **Vite 7** with SWC plugin for fast builds and HMR
-- **Vitest** with jsdom for unit testing and coverage reporting
+- **Vitest** with jsdom for unit testing and coverage reporting (configured in `vite.config.ts`)
 - **React Testing Library** for component testing
+- **jest-dom matchers** for enhanced assertions (setup in `src/test/setup.ts`)
+- **axios-mock-adapter** for mocking HTTP requests in tests
 - **ESLint 9** with TypeScript, React Hooks, and React Refresh plugins
 - React 19 with StrictMode enabled
+
+### Testing Setup
+
+The test environment is configured with:
+- `src/test/setup.ts` - Imports jest-dom matchers for enhanced assertions
+- `vite.config.ts` - Vitest configuration with jsdom environment and globals enabled
+- Mock data available in `src/test/mocks/` for testing API responses
+
+## Important Implementation Details
+
+### Cache Implementation Bug
+In `src/gifs/hooks/useGifs.tsx:62`, the cache is saved using the raw `query` parameter instead of the normalized `querySearch`. This means:
+- Cache lookups (line 30) use the normalized term (lowercase, trimmed)
+- Cache storage (line 62) uses the original query casing
+- This causes cache misses when the same search is performed with different casing
+
+To fix: Change line 62 from `gifsCache.current[query] = gifs;` to `gifsCache.current[querySearch] = gifs;`
+
+### Debounce Pattern
+The SearchBar component implements debounce using `useEffect` with cleanup. Each keystroke:
+1. Clears the previous timeout (cleanup function)
+2. Sets a new 1-second timeout
+3. Only executes the search if no more keystrokes occur within 1 second
+
+This pattern is preferred over manual timeout handling as it leverages React's built-in cleanup mechanism.
